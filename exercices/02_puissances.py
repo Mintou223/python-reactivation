@@ -1,7 +1,6 @@
 ''' calcul de la puissance reçue par chacune des résistances, pour pratiquer la manipulation de dictionnaires en Python'''
 
-import math
-    
+import math  
 u=12
 res={"R1": 100, "R2": 220, "R3": 470}
 r_eq=sum(res.values())#circuit en série
