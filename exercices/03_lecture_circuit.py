@@ -1,8 +1,16 @@
-'''manipulation de fichiers .txt'''
+'''Lecture d'un circuit série depuis un fichier texte.'''
 
 with open('data/circuit.txt', 'r') as f:
-    contenu=f.read().splitlines()
-    #res={cle: valeur for item in contenu for cle, valeur in [item.split("=")]}
-    a= [item.split("=") for item in contenu]
-print(contenu)
-print(a)
+    resistances={}
+    for ligne in f:
+        nom, valeur=ligne.split('=')
+        nom = nom.strip()
+        valeur=float(valeur)
+        if nom=='U':
+            u=valeur
+        else:
+            resistances[nom]=valeur
+
+print(f"U = {u} V")
+print(resistances)
+
