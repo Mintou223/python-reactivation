@@ -13,4 +13,5 @@ with open('data/circuit.txt', 'r') as f:
 
 print(f"U = {u} V")
 print(resistances)
-
+p={P: (R*u**2/sum(resistances.values())**2)*1000 for P,R in resistances.items()}#calcul de la puissance reçue par chaque résistance en mW
+print(p)
