@@ -29,8 +29,7 @@ try:
                     print(f"Valeur de tension négative ou nulle "
                           f"sur la ligne {numero}: {ligne}.")
                     sys.exit(1)
-                else:
-                    tension = valeur
+                tension = valeur
             else:
                 if valeur <= 0:
                     print(f"Valeur de résistance négative ou nulle "
