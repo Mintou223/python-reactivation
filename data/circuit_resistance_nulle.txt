@@ -1,0 +1,5 @@
+# Cas de test : résistance nulle
+U = 12
+R1 = 100
+R2 = 220
+R3 = 0

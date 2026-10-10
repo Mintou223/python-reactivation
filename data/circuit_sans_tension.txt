@@ -1,0 +1,4 @@
+# Cas de test : tension absente
+R1 = 100
+R2 = 220
+R3 = 470
