@@ -2,13 +2,12 @@
 - la tension et le dictionnaire des résistances
 - la résistance équivalente d'un circuit en série
 - le courant dans le circuit
-- la puissance reçue par chaque résistance
-"""
+- la puissance reçue par chaque résistance"""
 
 
 def lire_circuit(chemin):
-    """ lit le fichier de données et
-    retourne la tension et le dictionnaire des résistances """
+    """Lit le fichier de données et
+    retourne la tension et le dictionnaire des résistances."""
 
     tension = None
     resistances = {}
@@ -19,13 +18,13 @@ def lire_circuit(chemin):
                 continue
             if "=" not in ligne:
                 raise ValueError(f"La ligne {numero} ne contient pas "
-                                 f"de '=': {ligne}")
+                                 f"de '=: {ligne}")
             nom, valeur = ligne.split('=')
             nom = nom.strip()
+            valeur = valeur.strip()
             try:
                 valeur = float(valeur)
             except ValueError as e:
-                valeur = valeur.strip()
                 raise ValueError(f"La ligne {numero} contient "
                                  f"une valeur non numérique: {valeur}") from e
             if nom == 'U':
@@ -37,7 +36,7 @@ def lire_circuit(chemin):
                 if valeur <= 0:
                     raise ValueError(
                         f"La ligne {numero} contient "
-                        f"une résistance négative ou nulle {valeur}Ω")
+                        f"une résistance négative ou nulle: {valeur}Ω")
                 resistances[nom] = valeur
     if tension is None:
         raise ValueError("La tension n'a pas été spécifiée dans le fichier.")
@@ -45,15 +44,15 @@ def lire_circuit(chemin):
 
 
 def resistance_equivalente(resistances):
-    """ calcule la résistance équivalente d'un circuit en série """
+    """Calcule la résistance équivalente d'un circuit en série."""
     return sum(resistances.values())
 
 
 def courant(tension, r_eq):
-    """ calcule le courant dans le circuit """
+    """Calcule le courant dans le circuit."""
     return tension / r_eq
 
 
 def puissances(resistances, i):
-    """ calcule la puissance reçue par chaque résistance """
+    """Calcule la puissance reçue par chaque résistance."""
     return {nom: (r * i**2) for nom, r in resistances.items()}

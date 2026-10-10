@@ -11,10 +11,10 @@ def main():
     try:
         u, res = lire_circuit(chemin)
     except FileNotFoundError:
-        print("Erreur : Le fichier n'existe pas.")
+        print("Erreur: Le fichier n'existe pas.")
         sys.exit(1)
     except ValueError as e:
-        print(f"Erreur : {e}")
+        print(f"Erreur: {e}")
         sys.exit(1)
     r_eq = resistance_equivalente(res)
     i = courant(u, r_eq)
@@ -23,7 +23,7 @@ def main():
     print(f"U = {u} V")
     for nom, r in res.items():
         print(f"{nom}: {r} Ω")
-    print(f"Résistance équivalente : {r_eq} Ω")
+    print(f"Résistance équivalente: {r_eq} Ω")
     print(f"Courant : {i*1000:.2f} mA")
     for nom, v in power.items():
         print(f"{nom}: {res[nom]} Ω --> {v*1000:.2f} mW")
@@ -38,7 +38,7 @@ def main():
               f"{p_total:.6f} W = {p_th:.6f} W")
     else:
         print(f"La loi de conservation de l'énergie n'est pas vérifiée "
-              f"ou il y a une erreur de calcul : {p_total} W != {p_th} W")
+              f"ou il y a une erreur de calcul: {p_total} W != {p_th} W")
 
 
 if __name__ == "__main__":
