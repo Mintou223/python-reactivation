@@ -1,0 +1,5 @@
+# Cas de test : valeur non numérique
+U = 12
+R1 = 100
+R2 = abc
+R3 = 470
