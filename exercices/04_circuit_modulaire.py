@@ -24,7 +24,7 @@ def main():
     for nom, r in res.items():
         print(f"{nom}: {r} Ω")
     print(f"Résistance équivalente: {r_eq} Ω")
-    print(f"Courant : {i*1000:.2f} mA")
+    print(f"Courant: {i*1000:.2f} mA")
     for nom, v in power.items():
         print(f"{nom}: {res[nom]} Ω --> {v*1000:.2f} mW")
 

@@ -18,7 +18,7 @@ def lire_circuit(chemin):
                 continue
             if "=" not in ligne:
                 raise ValueError(f"La ligne {numero} ne contient pas "
-                                 f"de '=: {ligne}")
+                                 f"de '=': {ligne}")
             nom, valeur = ligne.split('=')
             nom = nom.strip()
             valeur = valeur.strip()
