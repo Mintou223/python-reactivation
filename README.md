@@ -27,6 +27,7 @@ Lancement depuis la racine du dépôt :
 python exercices\04_circuit_modulaire.py
 ```
 
+
 ### Fichiers de test
 
 - `data/circuit.txt` : contient les valeurs valides.
@@ -35,3 +36,4 @@ python exercices\04_circuit_modulaire.py
 - `data/circuit_resistance_nulle.txt` : contient une résistance nulle.
 - `data/circuit_tension_negative.txt` : contient une tension négative.
 - `data/circuit_valeur_non_numerique.txt` : contient une valeur non-numérique.
+- `data/circuit_double_egal.txt` : contient deux '=' sur la même ligne.
