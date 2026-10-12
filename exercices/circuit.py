@@ -16,9 +16,9 @@ def lire_circuit(chemin):
             ligne = ligne.strip()
             if not ligne or ligne.startswith('#'):
                 continue
-            if "=" not in ligne:
-                raise ValueError(f"La ligne {numero} ne contient pas "
-                                 f"de '=': {ligne}")
+            if ligne.count("=") != 1:
+                raise ValueError(f"La ligne {numero} contient trop "
+                                 f"ou pas assez de '=': {ligne}")
             nom, valeur = ligne.split('=')
             nom = nom.strip()
             valeur = valeur.strip()
