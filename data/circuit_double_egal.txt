@@ -1,0 +1,5 @@
+   # Cas de test : deux signes égal
+   U = 12
+   R1 = 100
+   R2 = 220 = 5
+   R3 = 470
