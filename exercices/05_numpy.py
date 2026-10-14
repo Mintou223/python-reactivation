@@ -23,16 +23,23 @@ def main():
     r = np.array(list(resistances.values()))
     rekk = r.sum()  # circuit série
     tensions = np.linspace(0, u, n)
+    tensions25 = np.linspace(0, u, 25)
 
     # comparaison boucle for VS vectorisation
     comparaison_time(tensions, rekk)
 
     # exécution de l'indexation
-    indexation(u, rekk)
+    indexation(tensions25, rekk)
+
+    # slicing de la liste des tensions
+    slicing(tensions25)
+
+    # test du piège de la vue sur ndarray
+    view_trap(tensions25)
 
 
 def comparaison_time(tensions, rekk):
-    '''Comparaison des temps d'exécution 
+    '''Comparaison des temps d'exécution
     boucle for et méthode vectorisée sur un même calcul.'''
     # Version boucle for
     courant_for = []
@@ -67,13 +74,33 @@ def comparaison_time(tensions, rekk):
               "Une comparaison seraient impertinente")
 
 
-def indexation(u, rekk):
+def indexation(tensions, rekk):
     '''Affichage d'éléments à différents index'''
-    tensions = np.linspace(0, u, 25)
     powers = (tensions**2)/rekk
     print("Eléments de tensions:\n"
           f"1er élément:{tensions[0]}, dernier élément :{tensions[-1]}, "
           f"3e élément:{tensions[2]}\n")
+
+
+def slicing(tensions):
+    '''Slicing de la liste des tensions '''
+    print(f"Les 5 premières tensions: {tensions[:5]}\n"
+          f"Toutes les tensions à partir de 6 V: {tensions[12:]}\n"
+          f"Une tension sur deux: {tensions[::2]}\n")
+
+
+# VIEW TRAP
+def view_trap(tensions):
+    '''experimentation du piège de modification d'une view'''
+    tensions = tensions.copy()
+    print(f"L'originale:\n {tensions}")
+    tranche = tensions[:13].copy()
+    tranche += 100
+    print(f"tensions après modification protégée de la slice:\n {tensions}")
+    tranche_trap = tensions[:13]
+    tranche_trap += 100
+    print(f"tensions après modification non protégée "
+          f"de la slice:\n {tensions}\n")
 
 
 if __name__ == "__main__":
