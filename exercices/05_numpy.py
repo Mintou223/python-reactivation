@@ -29,13 +29,16 @@ def main():
     comparaison_time(tensions, rekk)
 
     # exécution de l'indexation
-    indexation(tensions25, rekk)
+    indexation(tensions25)
 
     # slicing de la liste des tensions
     slicing(tensions25)
 
     # test du piège de la vue sur ndarray
     view_trap(tensions25)
+
+    # Affichage tensions en surcharge
+    surcharge(tensions25, rekk)
 
 
 def comparaison_time(tensions, rekk):
@@ -74,9 +77,8 @@ def comparaison_time(tensions, rekk):
               "Une comparaison seraient impertinente")
 
 
-def indexation(tensions, rekk):
+def indexation(tensions):
     '''Affichage d'éléments à différents index'''
-    powers = (tensions**2)/rekk
     print("Eléments de tensions:\n"
           f"1er élément:{tensions[0]}, dernier élément :{tensions[-1]}, "
           f"3e élément:{tensions[2]}\n")
@@ -85,7 +87,7 @@ def indexation(tensions, rekk):
 def slicing(tensions):
     '''Slicing de la liste des tensions '''
     print(f"Les 5 premières tensions: {tensions[:5]}\n"
-          f"Toutes les tensions à partir de 6 V: {tensions[12:]}\n"
+          f"Toutes les tensions à partir de 6 V: {tensions[tensions >= 6]}\n"
           f"Une tension sur deux: {tensions[::2]}\n")
 
 
@@ -101,6 +103,23 @@ def view_trap(tensions):
     tranche_trap += 100
     print(f"tensions après modification non protégée "
           f"de la slice:\n {tensions}\n")
+
+
+# boolean mask
+def surcharge(tensions, rekk):
+    '''Calcul et affiche de la 1ère tension en surcharge.'''
+    puissances = (tensions**2)/rekk
+    masque_surcharge = puissances > 0.125
+    cpt = np.count_nonzero(masque_surcharge)
+    print(f"Masque pour puissances supérieures à 0.125W:\n {masque_surcharge}")
+    print(masque_surcharge.shape, masque_surcharge.dtype)
+    print(f"Il y a {cpt} tensions en surcharge.")
+
+    puissances_surcharge = puissances[masque_surcharge]
+    tensions_surcharge = tensions[masque_surcharge]
+
+    print(f"Première tension en surcharge: "
+          f"{tensions_surcharge[0]}V --> {puissances_surcharge[0]:.6f}W")
 
 
 if __name__ == "__main__":
