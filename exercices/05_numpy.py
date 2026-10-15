@@ -40,6 +40,9 @@ def main():
     # Affichage tensions en surcharge
     surcharge(tensions25, rekk)
 
+    # 2D array et axis
+    circuits_2d()
+
 
 def comparaison_time(tensions, rekk):
     '''Comparaison des temps d'exécution
@@ -74,7 +77,7 @@ def comparaison_time(tensions, rekk):
 
     else:
         print("Les résultats de puissance ne se ressemblent pas. "
-              "Une comparaison seraient impertinente")
+              "Une comparaison seraient non ex^ploitable\n")
 
 
 def indexation(tensions):
@@ -119,7 +122,30 @@ def surcharge(tensions, rekk):
     tensions_surcharge = tensions[masque_surcharge]
 
     print(f"Première tension en surcharge: "
-          f"{tensions_surcharge[0]}V --> {puissances_surcharge[0]:.6f}W")
+          f"{tensions_surcharge[0]}V --> {puissances_surcharge[0]:.6f}W\n")
+
+
+# 2D et axis
+def circuits_2d():
+    circ_2d = np.array([[100, 220, 330, 470],
+                        [130, 250, 360, 500],
+                        [160, 280, 390, 530]], dtype=float)
+    rekk_serie = circ_2d.sum(axis=1)
+    rekk_serie_other_axis = circ_2d.sum(axis=0)
+    rekk_parallel = 1/np.sum(1/circ_2d, axis=1)
+    print(f"Les {circ_2d.shape[0]} circuits:\n{circ_2d}")
+    print(f"Forme (lignes, colonnes): {circ_2d.shape}")
+    print(f"Nombre de dimensions: {circ_2d.ndim}")
+    print(f"Nombre total d'éléments: {circ_2d.size}")
+    print(f"Type de données: {circ_2d.dtype}")
+    print(f"La résistance R3 du circuit 2: {circ_2d[1, 2]}")
+    print(f"Le circuit 2 en entier: {circ_2d[1]}")
+    print(f"La résistance R1 de chaque circuit: {circ_2d[:, 0]}")
+    print(f"Résistances équivalentes - circuits en série: {rekk_serie}")
+    print(f"rekk on other axis - circuits en série: {rekk_serie_other_axis}")
+    print(f"Résistances équivalentes - circuits en parallèle: {rekk_parallel}")
+    print(f"R_eq est toujours inférieure à la plus petite résistance "
+          f"du circuit: {np.all(circ_2d.min(axis=1) > rekk_parallel)}\n")
 
 
 if __name__ == "__main__":
