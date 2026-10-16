@@ -77,7 +77,7 @@ def comparaison_time(tensions, rekk):
 
     else:
         print("Les résultats de puissance ne se ressemblent pas. "
-              "Une comparaison seraient non ex^ploitable\n")
+              "Une comparaison seraient non exploitable\n")
 
 
 def indexation(tensions):
@@ -110,7 +110,8 @@ def view_trap(tensions):
 
 # boolean mask
 def surcharge(tensions, rekk):
-    '''Calcul et affiche de la 1ère tension en surcharge.'''
+    '''Calcul et affichage de la 1ère tension en surcharge;
+    usage d'un masque booléen.'''
     puissances = (tensions**2)/rekk
     masque_surcharge = puissances > 0.125
     cpt = np.count_nonzero(masque_surcharge)
@@ -127,6 +128,8 @@ def surcharge(tensions, rekk):
 
 # 2D et axis
 def circuits_2d():
+    """Calcul (et vérification) simplifié des résistances
+     équivalentes pour plusieurs circuits en une fois."""
     circ_2d = np.array([[100, 220, 330, 470],
                         [130, 250, 360, 500],
                         [160, 280, 390, 530]], dtype=float)
