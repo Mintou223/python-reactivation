@@ -6,7 +6,7 @@ Ce dépôt contient des exercices de réactivation de Python, autour de circuits
 
 ```
 python -m venv .venv
-.venv/Scripts/activate
+source .venv/Scripts/activate
 python -m pip install -r requirements.txt
 ```
 
@@ -16,7 +16,7 @@ python -m pip install -r requirements.txt
 - `exercices/02_puissances.py` : calcul de puissances reçues par les résistances.
 - `exercices/03_lecture_circuit.py` : calcul de puissances reçues par des résistances extraites d'un fichier txt.
 - `exercices/04_circuit_modulaire.py` et `exercices/circuit.py` : même travail que le point précédent, le script affiche les résultats et intercepte les erreurs.
-- `exercices/05_numpy.py` :familiarisation avec la bibliothèque numpy
+- `exercices/05_numpy.py` : familiarisation avec la bibliothèque numpy.
 
 ## Exercice 04 : module et script
 
@@ -25,7 +25,7 @@ Le module contient toutes les fonctions dont aura besoin le script, et toutes le
 Lancement depuis la racine du dépôt :
 
 ```
-python exercices\04_circuit_modulaire.py
+python exercices/04_circuit_modulaire.py
 ```
 
 ### Fichiers de test
