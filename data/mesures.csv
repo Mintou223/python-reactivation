@@ -1,0 +1,11 @@
+  capteur,tension_V,courant_A
+  moteur_A,230,4.2
+  moteur_B,230,3.8
+  pompe,120,2.5
+  moteur_A,228,4.5
+  capteur_bruite,abc,1.2
+  pompe,118
+  moteur_B,231,4.0
+
+  ventilateur,120,0.9
+  moteur_A,232,4.1
