@@ -74,7 +74,7 @@ Donc le script doit être lancé depuis la racine du dépôt pour lire ses donn�
 
 ## Exercice 06 — Examen de la phase 0 (`06_mesures.py` et `mesures.py`)
 
-**Objectif** : réviser l'ensemble des notions des exercices précédents (lecture de fichier, gestion des erreurs, séparation module/script), en particulier la construction de listes, d'ensembles et de dictionnaires en compréhension.
+**Objectif** : réviser l'ensemble des notions des exercices précédents (lecture de fichier, gestion des erreurs, séparation module/script), en particulier la construction de listes et de dictionnaires en compréhension.
 
 Le script lit un journal de mesures électriques (capteur, tension, courant), écarte les lignes invalides, calcule les puissances et produit un rapport texte.
 
@@ -86,7 +86,7 @@ Le script lit un journal de mesures électriques (capteur, tension, courant), é
 | `puissance` | `mesures.py` | Calcule la puissance P = U × I d'une mesure. |
 | `au_dessus_seuil` | `mesures.py` | Sélectionne par compréhension de liste les mesures dont la puissance dépasse strictement le seuil. |
 | `mesure_max` | `mesures.py` | Renvoie la mesure de puissance maximale à l'aide de `max(..., key=puissance)`. |
-| `moyenne_par_capteur` | `mesures.py` | Regroupe les puissances par capteur (compréhensions d'ensemble et de liste), puis calcule les moyennes par compréhension de dictionnaire. |
+| `moyenne_par_capteur` | `mesures.py` | Regroupe les puissances par capteur (compréhensions de liste), puis calcule les moyennes par compréhension de dictionnaire. |
 | `formater_ligne` | `06_mesures.py` | Met en forme une mesure : `- <capteur> : <U> V x <I> A = <P> W`. |
 | `ecrire_rapport` | `06_mesures.py` | Écrit le rapport dans `resultats/rapport.txt`. |
 | `main` | `06_mesures.py` | Enchaîne la lecture, les calculs et la rédaction du rapport ; intercepte l'absence du fichier de données. |
@@ -97,7 +97,7 @@ Le script lit un journal de mesures électriques (capteur, tension, courant), é
 
 ### Lancement
 
-À exécuter depuis la racine du dépôt (le dossier `resultats/` doit exister) :
+À exécuter depuis la racine du dépôt :
 
 ```
 source .venv/Scripts/activate

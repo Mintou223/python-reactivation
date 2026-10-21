@@ -7,29 +7,33 @@ import math
 def lire_mesure(chemin):
     '''Reçoit un fichier;
     Retourne un tuple contenant une liste de dictionnaires
-    des valeurs et le nombre de lignes rejetées'''
+    des valeurs et une liste avec les lignes rejetées'''
     with open(chemin, 'r', encoding="utf-8") as f:
         mesures = []
-        nb_rejetees = 0
+        rejets = []
         en_tete = f.readline()
         for numero, ligne in enumerate(f, start=2):
             ligne = ligne.strip()
             if ligne.startswith("#") or not ligne:
                 continue
             if ligne.count(',') != 2:
-                nb_rejetees += 1
+                rejets.append(f"ligne {numero} : {len(ligne.split(','))} "
+                              f"champs trouvés au lieu de 3")
                 continue
-            capteur, tension_str, courant_str = [element.strip() for element in ligne.split(',')]
+            capteur, tension_str, courant_str = [element.strip()
+                                                 for element
+                                                 in ligne.split(',')]
             try:
                 tension = float(tension_str)
                 courant = float(courant_str)
-            except ValueError:
-                nb_rejetees += 1
+            except ValueError as e:
+                rejets.append(f"ligne {numero} : {e}")
+
                 continue
             mesures.append({'capteur': capteur,
                             'tension': tension,
                             'courant': courant})
-        return (mesures, nb_rejetees)
+        return (mesures, rejets)
 
 
 def puissance(m):
@@ -55,6 +59,8 @@ def moyenne_par_capteur(mesures):
     Retourne un dictionnaire contenant
     la moyenne des puissance par capteur."""
     puissances = {}
-    for capteur in {m["capteur"] for m in mesures}:
-        puissances[capteur] = [puissance(m) for m in mesures if m["capteur"] == capteur]
+    noms = list(dict.fromkeys(m["capteur"] for m in mesures))
+    for capteur in noms:
+        puissances[capteur] = [puissance(m)
+                               for m in mesures if m["capteur"] == capteur]
     return {capteur: sum(p) / len(p) for capteur, p in puissances.items()}
