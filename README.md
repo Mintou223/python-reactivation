@@ -72,8 +72,41 @@ Donc le script doit être lancé depuis la racine du dépôt pour lire ses donn�
 - **Circuits 2D** : calcul de la résistance série (1120 Ω) et parallèle (50,75 Ω) du premier circuit, et contrôle physique effectué avec R_eq_parallèle < min(résistances du circuit).
 
 
-## Exercice 06 — exament Phase0 (`06_mesures.py`)
-**Objectifs**: revoir tout ce qui a été travaillé pendant les exercices précédent,
-surtout la création de liste et de dictionnaires en compréhension.
+## Exercice 06 — Examen de la phase 0 (`06_mesures.py` et `mesures.py`)
 
-pardon j'ai la flemme d'écrire le reste
+**Objectif** : réviser l'ensemble des notions des exercices précédents (lecture de fichier, gestion des erreurs, séparation module/script), en particulier la construction de listes, d'ensembles et de dictionnaires en compréhension.
+
+Le script lit un journal de mesures électriques (capteur, tension, courant), écarte les lignes invalides, calcule les puissances et produit un rapport texte.
+
+### Contenu
+
+| Fonction | Fichier | Rôle |
+|---|---|---|
+| `lire_mesure` | `mesures.py` | Lit le fichier CSV et renvoie la liste des mesures valides (dictionnaires `capteur`, `tension`, `courant`) ainsi que la liste des motifs de rejet. Les lignes vides et les commentaires (`#`) sont ignorés sans être comptés comme rejets. |
+| `puissance` | `mesures.py` | Calcule la puissance P = U × I d'une mesure. |
+| `au_dessus_seuil` | `mesures.py` | Sélectionne par compréhension de liste les mesures dont la puissance dépasse strictement le seuil. |
+| `mesure_max` | `mesures.py` | Renvoie la mesure de puissance maximale à l'aide de `max(..., key=puissance)`. |
+| `moyenne_par_capteur` | `mesures.py` | Regroupe les puissances par capteur (compréhensions d'ensemble et de liste), puis calcule les moyennes par compréhension de dictionnaire. |
+| `formater_ligne` | `06_mesures.py` | Met en forme une mesure : `- <capteur> : <U> V x <I> A = <P> W`. |
+| `ecrire_rapport` | `06_mesures.py` | Écrit le rapport dans `resultats/rapport.txt`. |
+| `main` | `06_mesures.py` | Enchaîne la lecture, les calculs et la rédaction du rapport ; intercepte l'absence du fichier de données. |
+
+### Fichier de test
+
+- `data/mesures.csv` : 9 lignes de mesures et une ligne vide. Deux lignes sont invalides : une valeur non numérique (ligne 6) et une ligne ne comportant que deux champs (ligne 7).
+
+### Lancement
+
+À exécuter depuis la racine du dépôt (le dossier `resultats/` doit exister) :
+
+```
+source .venv/Scripts/activate
+python exercices/06_mesures.py
+```
+
+### Résultats clés
+
+- **Validation** : 7 mesures valides et 2 lignes rejetées, chacune consignée dans le rapport avec son numéro de ligne et le motif du rejet.
+- **Mesure maximale** : moteur_A, 228 V × 4,5 A = 1026,0 W.
+- **Dépassements** : 4 mesures au-dessus du seuil de 900 W, toutes issues des moteurs A et B.
+- **Moyennes par capteur** : moteur_A 981,1 W ; moteur_B 899,0 W ; pompe 300,0 W ; ventilateur 108,0 W.
