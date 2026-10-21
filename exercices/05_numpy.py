@@ -26,16 +26,16 @@ def main():
     tensions25 = np.linspace(0, u, 25)
 
     # comparaison boucle for VS vectorisation
-    comparaison_time(tensions, rekk)
+    # comparaison_time(tensions, rekk)
 
     # exécution de l'indexation
-    indexation(tensions25)
+    # indexation(tensions25)
 
     # slicing de la liste des tensions
-    slicing(tensions25)
+    # slicing(tensions25)
 
     # test du piège de la vue sur ndarray
-    view_trap(tensions25)
+    # view_trap(tensions25)
 
     # Affichage tensions en surcharge
     surcharge(tensions25, rekk)
